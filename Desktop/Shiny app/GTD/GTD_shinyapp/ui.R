@@ -1,6 +1,7 @@
 library(shiny)
 library(DT)
 library(data.table)
+library(plotly)
 
 gtd <- fread("https://s3-ap-southeast-2.amazonaws.com/globalterrorismdataset/global_terrorism_dataset.csv", data.table = FALSE)
 gtd$iyear <- as.numeric(gtd$iyear)
@@ -46,15 +47,6 @@ fluidPage(
     ),
     mainPanel(
       tabsetPanel(type = "tabs",
-                  
-                  tabPanel(
-                    title = "bar",
-                    plotOutput(outputId = "barplot")
-                  ),
-                  tabPanel(
-                    title = "map",
-                    plotOutput(outputId = "map_plot")
-                  ),
                   tabPanel(
                     title = "reference",
                     h1("Global Terrorism Dataset"),
@@ -67,7 +59,15 @@ fluidPage(
                        headquartered at the University of Maryland. "),
                     a(href = "https://www.kaggle.com/START-UMD/gtd/data", "Global Terrorism Database"),
                     br()
-                    )),
+                  ),
+                  tabPanel(
+                    title = "bar",
+                    plotOutput(outputId = "barplot")
+                  ),
+                  tabPanel(
+                    title = "map",
+                    plotOutput(outputId = "map_plot")
+                  )),
       DT::dataTableOutput(outputId = "table")
       ) 
     )

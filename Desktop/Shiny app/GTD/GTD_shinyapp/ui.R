@@ -1,10 +1,6 @@
-library(tidyverse)
-library(ggplot2)
 library(shiny)
 library(DT)
 library(data.table)
-library(bit64)
-library(maps)
 
 gtd <- fread("https://s3-ap-southeast-2.amazonaws.com/globalterrorismdataset/global_terrorism_dataset.csv", data.table = FALSE)
 gtd$iyear <- as.numeric(gtd$iyear)

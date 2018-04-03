@@ -18,13 +18,12 @@ gtd$date <- as.Date(gtd$date)
 function(input, output){
   
   observeEvent(input$btn1, {
-    hide('select_var')
+    ('select_var')
   })
   
   observeEvent(input$btn2, {
     show('select_var')
   })
-  
   
   selected_df <- reactive({
     req(input$select_var)
@@ -41,7 +40,9 @@ function(input, output){
     req(input$fill)
     selected_df_period() %>% 
       ggplot(aes_string(x=selected_df_period()$iyear, fill=input$fill)) + geom_bar() + 
-      labs(x="YEAR")
+      labs(x="YEAR", 
+           y= "COUNT",
+           fill = "Region Name")
   })
   
   output$map_plot <- renderPlot({
@@ -60,7 +61,7 @@ function(input, output){
     DT::datatable(
       data = selected_df(),
       option = 
-        list(lengthMenu = c(5, 10, 50), 
+        list(lengthMenu = c(5, 10, 50),
              pageLength = 5),
       rownames = FALSE
     )

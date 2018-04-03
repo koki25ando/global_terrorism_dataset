@@ -36,9 +36,9 @@ fluidPage(
                       "Weapon Type" = "weaptype1_txt"),
           selected = "region_txt"
         )
-      ),
-      actionButton("btn1", "Hide"),
+      ),      
       actionButton("btn2", "Show"),
+      actionButton("btn1", "Hide"),
       wellPanel(
         h3("Data Table"),
         checkboxGroupInput(
@@ -65,11 +65,11 @@ fluidPage(
                     br()
                   ),
                   tabPanel(
-                    title = "bar",
+                    title = "Time Series Plot",
                     plotOutput(outputId = "barplot")
                   ),
                   tabPanel(
-                    title = "map",
+                    title = "World Map",
                     plotOutput(outputId = "map_plot")
                   )),
       DT::dataTableOutput(outputId = "table")

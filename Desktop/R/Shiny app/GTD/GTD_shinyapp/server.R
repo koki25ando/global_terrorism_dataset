@@ -46,6 +46,7 @@ function(input, output){
   })
   
   output$map_plot <- renderPlot({
+    world <- world %>% filter(region != "Antarctica")
      world %>% 
        ggplot() + geom_map(map = world, 
                            aes(x=long, y=lat, map_id = region),
@@ -54,7 +55,8 @@ function(input, output){
                     selected_df_period() %>% select(longitude, latitude) %>% na.omit(), 
                   aes(x=longitude, y=latitude), 
                   colour = "red", fill = "orange",
-                  alpha = 0.2, size=0.4)
+                  alpha = 0.2, size=0.4) +
+      labs(x = "Longitude", y = "Latitude")
   })
   
   output$table <- renderDataTable({

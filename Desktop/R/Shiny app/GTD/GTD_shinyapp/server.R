@@ -14,7 +14,6 @@ gtd$imonth <- as.numeric(gtd$imonth)
 gtd$iday <- as.numeric(gtd$iday)
 gtd$date <- as.Date(gtd$date)
 
-
 function(input, output){
   
   observeEvent(input$btn1, {

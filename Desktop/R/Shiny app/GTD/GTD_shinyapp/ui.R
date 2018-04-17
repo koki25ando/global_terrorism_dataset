@@ -11,7 +11,6 @@ gtd$iday <- as.numeric(gtd$iday)
 gtd$date <- as.Date(gtd$date)
 
 
-
 fluidPage(
   useShinyjs(),
   titlePanel("Global Terrorism Dataset", windowTitle = "GTD"),
@@ -21,7 +20,7 @@ fluidPage(
         h3("Plotting"),
         sliderInput(
           inputId = "period",
-          label = "Select Period",
+          label = "Select Period :",
           value = c(1980, 2010),
           min = min(gtd$iyear), 
           max = max(gtd$iyear),
@@ -43,8 +42,33 @@ fluidPage(
         h3("Data Table"),
         checkboxGroupInput(
           inputId = "select_var",
-          label = "Select Variables",
-          choices = names(gtd),
+          label = "Select Variables :",
+          choices = c(
+           "Date" = "date",
+           "Year" = "iyear",
+           "Month" = "imonth",
+           "Day" = "iday",
+           "Country" = "country_txt",
+           "Region_num" = "region",
+           "Region" = "region_txt",
+           "State" = "provstate",
+           "City" = "city",
+           "Latitude" = "latitude",
+           "Longitude" = "longitude",
+           "Vicinity" = "vicinity",
+           "Attack Type" = "attacktype1_txt",
+           "Target" = "targtype1_txt",
+           "natlty" = "natlty1_txt",
+           "Motivation" = "motive",
+           "nperpcap" = "nperpcap",
+           "Weapon" = "weaptype1_txt",
+           "Weapon Detail" =  "weapdetail",
+           "Killed" =  "nkill",
+           "Wounded" =  "nwound",
+           "Kidhijcountry" =  "kidhijcountry",
+           "Released" =  "nreleased",
+           "Source" =  "dbsource"
+          ),
           selected = c("date","country_txt","city",
                        "attacktype1_txt","nkill", "nwound")
         ))
@@ -52,9 +76,9 @@ fluidPage(
     mainPanel(
       tabsetPanel(type = "tabs",
                   tabPanel(
-                    title = "reference",
+                    title = "Overview",
                     h1("Global Terrorism Dataset"),
-                    h2("Overview"),
+                    # h2("Overview"),
                     h4("Information on more than 170,000 Terrorist Attacks"),
                     h4("The Global Terrorism Database (GTD) is an open-source database including information on terrorist attacks around the world 
                        from 1970 through 2016 (with annual updates planned for the future). The GTD includes systematic data on domestic as well as 
